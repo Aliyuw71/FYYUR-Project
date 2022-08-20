@@ -1,8 +1,6 @@
-from app import app, db
-from flask_migrate import Migrate
+from flask_sqlalchemy import SQLAlchemy
 
-migrate = Migrate(app, db)
-
+db = SQLAlchemy()
 
 class Show(db.Model):
     __tablename__ = 'shows'

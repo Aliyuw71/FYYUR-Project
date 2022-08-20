@@ -32,13 +32,14 @@ from forms import *
 app = Flask(__name__)
 moment = Moment(app)
 app.config.from_object('config')
-db = SQLAlchemy(app)
 
 # ----------------------------------------------------------------------------#
 # Models.
 # ----------------------------------------------------------------------------#
 
-from models import Venue, Artist, Show
+from models import Venue, Artist, Show, db
+db.init_app(app)
+migrate = Migrate(app, db)
 
 
 # ----------------------------------------------------------------------------#
@@ -574,8 +575,6 @@ if not app.debug:
 # ----------------------------------------------------------------------------#
 # Launch.
 # ----------------------------------------------------------------------------#
-
-db.create_all()
 
 # Default port:
 if __name__ == '__main__':
